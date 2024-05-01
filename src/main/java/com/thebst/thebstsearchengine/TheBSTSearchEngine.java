@@ -7,6 +7,9 @@ package com.thebst.thebstsearchengine;
 public class TheBSTSearchEngine {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        String str = "national bureau of standards .  after the results on the two dimensional";
+        for (String word : str.split("\\s+")) {
+            System.out.println(word);
+        }
     }
 }
