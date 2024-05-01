@@ -11,5 +11,9 @@ public class TheBSTSearchEngine {
         for (String word : str.split("\\s+")) {
             System.out.println(word);
         }
+        
+        String projectFolderPath = System.getProperty("user.dir");
+
+        System.out.println("Project Folder Path: " + projectFolderPath);
     }
 }

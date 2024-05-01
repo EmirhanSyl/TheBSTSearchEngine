@@ -16,7 +16,8 @@ public class FileFilter {
         ".", ",", "!", "?", ";", ":", "-", "'", "\"", "(", ")", "[", "]", "{",
         "}", "/", "\\", "<", ">", "&", "@", "#", "$", "%", "^", "*", "+", "="
     };
-    private File ignoreFile = new File("C:\\Users\\emirs\\Documents\\Projects\\java\\TheBSTSearchEngine\\testFiles\\ignoreList.txt");
+    private final String projectFolderPath = System.getProperty("user.dir");
+    private File ignoreFile = new File(projectFolderPath + "\\testFiles\\ignoreList.txt");
     private final LinkedList<String> ignoreList = new LinkedList<>();
 
     private final File file;
