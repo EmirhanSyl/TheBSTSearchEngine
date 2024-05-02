@@ -1,14 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.thebst.thebstsearchengine.BinarySearchTree;
 
 /**
  *
- * @author Lenovo
+ * @author emirs & asimtarik
+ * @param <T>
  */
-public class BinarySearchTree<T> {
+public class BinarySearchTree<T extends IComparable> {
+
     private BSTNode<T> root;
 
     public BinarySearchTree() {
@@ -24,33 +23,69 @@ public class BinarySearchTree<T> {
     }
 
     public void add(T data) {
-        // Add implementation here
+        root = addRecursive(root, data);
+    }
+
+    private BSTNode<T> addRecursive(BSTNode<T> node, T data) {
+        if (node == null) {
+            return new BSTNode<>(data);
+        }
+
+        if (data.isEquals(node.getData()) < 0) {
+            node.setLeft(addRecursive(node.getLeft(), data));
+        } else if (data.isEquals(node.getData()) > 0) {
+            node.setRight(addRecursive(node.getRight(), data));
+        } else {
+            //update();
+        }
+
+        return node;
     }
 
     public boolean search(T data) {
-        // Add implementation here
-        return false;
+        return searchRecursive(root, data);
     }
 
-    public void update() {
+    private boolean searchRecursive(BSTNode<T> node, T data) {
+        if (node == null) {
+            return false;
+        }
+
+        int compareResult = data.isEquals(node.getData());
+        if (compareResult == 0) {
+            return true; // Found the data
+        } else if (compareResult < 0) {
+            return searchRecursive(node.getLeft(), data);
+        } else {
+            return searchRecursive(node.getRight(), data);
+        }
+    }
+
+    public void update(BSTNode<T> node) {
         // Add implementation here
     }
 
-    public int compareData() {
-        // Add implementation here
-        return 0;
+    public void inOrder(BSTNode<T> node) {
+        if (node != null) {
+            inOrder(node.getLeft());
+            System.out.print(node.getData().toString() + " ");
+            inOrder(node.getRight());
+        }
     }
 
-    public void preOrder() {
-        // Add implementation here
+    public void postOrder(BSTNode<T> node) {
+        if (node != null) {
+            postOrder(node.getLeft());
+            postOrder(node.getRight());
+            System.out.print(node.getData().toString() + " ");
+        }
     }
 
-    public void postOrder() {
-        // Add implementation here
-    }
-
-    
-    public void inOrder() {
-        // Add implementation here
+    public void preOrder(BSTNode<T> node) {
+        if (node != null) {
+            System.out.print(node.getData().toString() + " ");
+            preOrder(node.getLeft());
+            preOrder(node.getRight());
+        }
     }
 }
