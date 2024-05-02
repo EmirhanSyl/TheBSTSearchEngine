@@ -1,10 +1,10 @@
 package com.thebst.thebstsearchengine.core;
 
+import com.thebst.thebstsearchengine.LinkedList.LL;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedList;
 
 /**
  *
@@ -18,7 +18,7 @@ public class FileFilter {
     };
     private final String projectFolderPath = System.getProperty("user.dir");
     private File ignoreFile = new File(projectFolderPath + "\\testFiles\\ignoreList.txt");
-    private final LinkedList<String> ignoreList = new LinkedList<>();
+    private final LL<String> ignoreList = new LL<>();
 
     private final File file;
     private final String fileContent;
@@ -42,13 +42,13 @@ public class FileFilter {
     }
 
     
-    public LinkedList<String> filterFile() {
-        LinkedList<String> filteredContent = new LinkedList<>();
+    public LL<String> filterFile() {
+        LL<String> filteredContent = new LL<>();
 
         String words[] = fileContent.split("\\s+");
         for (String word : words) {
             if (!ignoreList.contains(word)) {
-                filteredContent.add(word);
+                filteredContent.addLast(word);
             }
         }
 
@@ -78,14 +78,14 @@ public class FileFilter {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                ignoreList.add(line.strip());
+                ignoreList.addLast(line.strip());
             }
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
         }
 
         for (String punctuation : punctuations) {
-            ignoreList.add(punctuation);
+            ignoreList.addLast(punctuation);
         }
     }
 

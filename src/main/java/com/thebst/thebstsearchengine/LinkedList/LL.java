@@ -1,14 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.thebst.thebstsearchengine.LinkedList;
-
-import com.thebst.thebstsearchengine.LinkedList.LL;
 
 /**
  *
- * @author Lenovo
+ * @author emirs & asimtarik
  */
 public class LL<T> {
     private int size;
@@ -23,7 +17,6 @@ public class LL<T> {
     public int getSize() {
         return size;
     }
-
     public void setSize(int size) {
         this.size = size;
     }
@@ -31,7 +24,6 @@ public class LL<T> {
     public LLNode<T> getHead() {
         return head;
     }
-
     public void setHead(LLNode<T> head) {
         this.head = head;
     }

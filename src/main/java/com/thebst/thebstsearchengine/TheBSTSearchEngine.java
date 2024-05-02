@@ -2,7 +2,7 @@ package com.thebst.thebstsearchengine;
 
 /**
  *
- * @author thebst
+ * @author emirs & asimtarik
  */
 public class TheBSTSearchEngine {
 
