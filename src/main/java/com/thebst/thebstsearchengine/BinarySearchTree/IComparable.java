@@ -6,4 +6,5 @@ package com.thebst.thebstsearchengine.BinarySearchTree;
  */
 public interface IComparable {
     int isEquals(IComparable otherData);
+    public void updateData();
 }

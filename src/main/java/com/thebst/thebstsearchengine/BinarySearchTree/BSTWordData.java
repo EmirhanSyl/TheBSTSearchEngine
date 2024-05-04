@@ -1,6 +1,7 @@
 package com.thebst.thebstsearchengine.BinarySearchTree;
 
 import com.thebst.thebstsearchengine.LinkedList.*;
+import com.thebst.thebstsearchengine.screens.ResultPanel;
 
 /**
  *
@@ -10,9 +11,10 @@ public class BSTWordData implements IComparable{
     private String data;
     private LL<LLWordData> wordCounts;
 
-    public BSTWordData(String data) {
+    public BSTWordData(String data, String documentName) {
         this.data = data;
         this.wordCounts = new LL<>();
+        wordCounts.addLast(new LLWordData(documentName, 1));
     }
 
     public String getData() {
@@ -29,6 +31,22 @@ public class BSTWordData implements IComparable{
         this.wordCounts = wordCounts;
     }
     
+    @Override
+    public void updateData(){
+        boolean found = false;
+        String filename = ResultPanel.currentFile;
+        for (int i = 0; i < wordCounts.getSize(); i++) {
+            if (wordCounts.get(i).getFileName().equals(filename)) {
+                wordCounts.get(i).setCount(wordCounts.get(i).getCount() + 1);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            wordCounts.addLast(new LLWordData(filename, 1));
+        }
+    }
+    
     
     @Override
     public int isEquals(IComparable otherData){
@@ -37,7 +55,12 @@ public class BSTWordData implements IComparable{
 
     @Override
     public String toString() {
-        return data;
+        String output = "Key: " + data + ", Found: [";
+        for (int i = 0; i < wordCounts.getSize(); i++) {
+            output += wordCounts.get(i).toString() + ", ";
+        }
+        output += "]";
+        return output;
     }
     
     

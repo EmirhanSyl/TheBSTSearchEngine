@@ -36,7 +36,7 @@ public class BinarySearchTree<T extends IComparable> {
         } else if (data.isEquals(node.getData()) > 0) {
             node.setRight(addRecursive(node.getRight(), data));
         } else {
-            //update();
+            node.getData().updateData();
         }
 
         return node;
@@ -61,14 +61,11 @@ public class BinarySearchTree<T extends IComparable> {
         }
     }
 
-    public void update(BSTNode<T> node) {
-        // Add implementation here
-    }
 
     public void inOrder(BSTNode<T> node) {
         if (node != null) {
             inOrder(node.getLeft());
-            System.out.print(node.getData().toString() + " ");
+            System.out.println(node.getData().toString() + " ");
             inOrder(node.getRight());
         }
     }
@@ -77,13 +74,13 @@ public class BinarySearchTree<T extends IComparable> {
         if (node != null) {
             postOrder(node.getLeft());
             postOrder(node.getRight());
-            System.out.print(node.getData().toString() + " ");
+            System.out.println(node.getData().toString() + " ");
         }
     }
 
     public void preOrder(BSTNode<T> node) {
         if (node != null) {
-            System.out.print(node.getData().toString() + " ");
+            System.out.println(node.getData().toString() + " ");
             preOrder(node.getLeft());
             preOrder(node.getRight());
         }

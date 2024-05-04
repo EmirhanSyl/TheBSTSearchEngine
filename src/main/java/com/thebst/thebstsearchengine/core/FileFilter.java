@@ -1,5 +1,7 @@
 package com.thebst.thebstsearchengine.core;
 
+import com.thebst.thebstsearchengine.BinarySearchTree.BSTWordData;
+import com.thebst.thebstsearchengine.BinarySearchTree.BinarySearchTree;
 import com.thebst.thebstsearchengine.LinkedList.LL;
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,15 +22,9 @@ public class FileFilter {
     private File ignoreFile = new File(projectFolderPath + "\\testFiles\\ignoreList.txt");
     private final LL<String> ignoreList = new LL<>();
 
-    private final File file;
-    private final String fileContent;
-    private final String fileName;
 
-    public FileFilter(File file) {
-        this.file = file;
+    public FileFilter() {
         createFilterList();
-        fileContent = readFileContentWithoutHtmlTags();
-        fileName = file.getName();
     }
 
     public void setPunctuationList(String[] punctuations) {
@@ -37,25 +33,29 @@ public class FileFilter {
     public void setIgnoreFile(File ignoreFile) {
         this.ignoreFile = ignoreFile;
     }
-    public String getFileName(){
-        return fileName;
-    }
 
     
-    public LL<String> filterFile() {
-        LL<String> filteredContent = new LL<>();
+    private void createFilterList() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(ignoreFile))) {
+            String line;
 
-        String words[] = fileContent.split("\\s+");
-        for (String word : words) {
-            if (!ignoreList.contains(word)) {
-                filteredContent.addLast(word);
+            while ((line = reader.readLine()) != null) {
+                ignoreList.addLast(line.strip());
             }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
         }
 
-        return filteredContent;
+        for (String punctuation : punctuations) {
+            ignoreList.addLast(punctuation);
+        }
     }
-
-    private String readFileContentWithoutHtmlTags() {
+    
+    private String readFile(File file){
+        return readFileContentWithoutHtmlTags(file);
+    }
+    
+    private String readFileContentWithoutHtmlTags(File file) {
         String content = "";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -72,20 +72,15 @@ public class FileFilter {
 
         return content;
     }
-
-    private void createFilterList() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(ignoreFile))) {
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                ignoreList.addLast(line.strip());
+    
+    public void updateBSTWithFile(BinarySearchTree bst, File file){
+        String fileContent = readFile(file);
+        
+        String words[] = fileContent.split("\\s+");
+        for (String word : words) {
+            if (!ignoreList.contains(word)) {
+                bst.add(new BSTWordData(word, file.getName()));
             }
-        } catch (IOException e) {
-            System.err.println("Error reading file: " + e.getMessage());
-        }
-
-        for (String punctuation : punctuations) {
-            ignoreList.addLast(punctuation);
         }
     }
 
