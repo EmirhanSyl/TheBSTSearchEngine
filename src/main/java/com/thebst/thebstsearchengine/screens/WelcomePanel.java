@@ -1,6 +1,7 @@
 package com.thebst.thebstsearchengine.screens;
 
 import com.thebst.thebstsearchengine.MainFrame;
+import com.thebst.thebstsearchengine.customComponents.DraggablePanel;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -24,6 +25,7 @@ public class WelcomePanel extends javax.swing.JPanel {
 
         welcomeTextLabel = new javax.swing.JLabel();
         chooseFileBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         welcomeTextLabel.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         welcomeTextLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -37,18 +39,30 @@ public class WelcomePanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Go To Draggable");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(481, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(welcomeTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addComponent(chooseFileBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(420, 420, 420))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(welcomeTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29))
+                            .addComponent(chooseFileBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(420, 420, 420))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(513, 513, 513))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -57,7 +71,9 @@ public class WelcomePanel extends javax.swing.JPanel {
                 .addComponent(welcomeTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(159, 159, 159)
                 .addComponent(chooseFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(jButton1)
+                .addContainerGap(171, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -68,6 +84,11 @@ public class WelcomePanel extends javax.swing.JPanel {
             context.setPage(new ResultPanel(context, selectedFiles));
         }
     }//GEN-LAST:event_chooseFileBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        context.setPage(new DraggablePanel());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public File[] selectHTMLFiles() {
         File[] result;
@@ -93,6 +114,7 @@ public class WelcomePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton chooseFileBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel welcomeTextLabel;
     // End of variables declaration//GEN-END:variables
 }
