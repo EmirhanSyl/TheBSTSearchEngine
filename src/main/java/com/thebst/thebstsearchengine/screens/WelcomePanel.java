@@ -81,7 +81,7 @@ public class WelcomePanel extends javax.swing.JPanel {
 
         File[] selectedFiles = selectHTMLFiles();
         if (selectedFiles.length > 0) {
-            context.setPage(new ResultPanel(context, selectedFiles));
+            context.setPage(new Results(context, selectedFiles));
         }
     }//GEN-LAST:event_chooseFileBtnActionPerformed
 

@@ -62,27 +62,45 @@ public class BinarySearchTree<T extends IComparable> {
     }
 
 
-    public void inOrder(BSTNode<T> node) {
-        if (node != null) {
-            inOrder(node.getLeft());
-            System.out.println(node.getData().toString() + " ");
-            inOrder(node.getRight());
-        }
-    }
+    public String inOrder(BSTNode<T> node) {
+    StringBuilder result = new StringBuilder();
+    inOrderTraversal(node, result);
+    return result.toString().trim();
+}
 
-    public void postOrder(BSTNode<T> node) {
-        if (node != null) {
-            postOrder(node.getLeft());
-            postOrder(node.getRight());
-            System.out.println(node.getData().toString() + " ");
-        }
+private void inOrderTraversal(BSTNode<T> node, StringBuilder result) {
+    if (node != null) {
+        inOrderTraversal(node.getLeft(), result);
+        result.append(node.getData().toString()).append(" ");
+        inOrderTraversal(node.getRight(), result);
     }
+}
 
-    public void preOrder(BSTNode<T> node) {
-        if (node != null) {
-            System.out.println(node.getData().toString() + " ");
-            preOrder(node.getLeft());
-            preOrder(node.getRight());
-        }
+public String postOrder(BSTNode<T> node) {
+    StringBuilder result = new StringBuilder();
+    postOrderTraversal(node, result);
+    return result.toString().trim();
+}
+
+private void postOrderTraversal(BSTNode<T> node, StringBuilder result) {
+    if (node != null) {
+        postOrderTraversal(node.getLeft(), result);
+        postOrderTraversal(node.getRight(), result);
+        result.append(node.getData().toString()).append(" ");
     }
+}
+
+public String preOrder(BSTNode<T> node) {
+    StringBuilder result = new StringBuilder();
+    preOrderTraversal(node, result);
+    return result.toString().trim();
+}
+
+private void preOrderTraversal(BSTNode<T> node, StringBuilder result) {
+    if (node != null) {
+        result.append(node.getData().toString()).append(" ");
+        preOrderTraversal(node.getLeft(), result);
+        preOrderTraversal(node.getRight(), result);
+    }
+}
 }

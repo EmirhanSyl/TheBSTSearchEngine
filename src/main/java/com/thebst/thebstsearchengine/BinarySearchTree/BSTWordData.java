@@ -1,7 +1,7 @@
 package com.thebst.thebstsearchengine.BinarySearchTree;
 
 import com.thebst.thebstsearchengine.LinkedList.*;
-import com.thebst.thebstsearchengine.screens.ResultPanel;
+import com.thebst.thebstsearchengine.screens.Results;
 
 /**
  *
@@ -34,7 +34,7 @@ public class BSTWordData implements IComparable{
     @Override
     public void updateData(){
         boolean found = false;
-        String filename = ResultPanel.currentFile;
+        String filename = Results.currentFile;
         for (int i = 0; i < wordCounts.getSize(); i++) {
             if (wordCounts.get(i).getFileName().equals(filename)) {
                 wordCounts.get(i).setCount(wordCounts.get(i).getCount() + 1);
