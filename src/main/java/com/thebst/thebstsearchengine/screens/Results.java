@@ -11,6 +11,7 @@ import com.thebst.thebstsearchengine.MainFrame;
 import com.thebst.thebstsearchengine.core.FileFilter;
 import java.io.File;
 
+
 /**
  *
  * @author Lenovo
@@ -44,25 +45,19 @@ public class Results extends javax.swing.JPanel {
     private void initComponents() {
 
         OrderComboBox = new javax.swing.JComboBox<>();
-        ExecuteButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         OrderTextArea = new javax.swing.JTextArea();
         FindText = new javax.swing.JTextField();
         FindButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         ResultArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         OrderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "InOrder", "PostOrder", "PreOrder" }));
         OrderComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OrderComboBoxActionPerformed(evt);
-            }
-        });
-
-        ExecuteButton.setText("Execute");
-        ExecuteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExecuteButtonActionPerformed(evt);
             }
         });
 
@@ -87,6 +82,10 @@ public class Results extends javax.swing.JPanel {
         ResultArea.setRows(5);
         jScrollPane2.setViewportView(ResultArea);
 
+        jLabel1.setText("Choose an Order Type");
+
+        jLabel2.setText("Search The Data");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,38 +93,42 @@ public class Results extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(FindButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(FindText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(101, 101, 101)
-                                .addComponent(ExecuteButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(OrderComboBox, 0, 140, Short.MAX_VALUE)
-                                        .addComponent(FindText)))))
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(FindButton)
-                        .addGap(79, 79, 79)))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(OrderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(OrderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(ExecuteButton)
-                .addGap(88, 88, 88)
+                .addComponent(OrderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(FindText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(FindButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(126, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -134,30 +137,30 @@ public class Results extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void OrderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderComboBoxActionPerformed
-        
-    }//GEN-LAST:event_OrderComboBoxActionPerformed
-
-    private void ExecuteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExecuteButtonActionPerformed
-       String selectedOption = (String) OrderComboBox.getSelectedItem();
+        String selectedOption = (String) OrderComboBox.getSelectedItem();
     String traversalResult = "";
     
     if (selectedOption.equals("InOrder")) {
         traversalResult = theBeSTSearchTree.inOrder(theBeSTSearchTree.getRoot());
+        
     } else if (selectedOption.equals("PostOrder")) {
         traversalResult = theBeSTSearchTree.postOrder(theBeSTSearchTree.getRoot());
+        
+        
     } else if (selectedOption.equals("PreOrder")) {
         traversalResult = theBeSTSearchTree.preOrder(theBeSTSearchTree.getRoot());
     }
     
     traversalResult = traversalResult.replaceAll("Key: ", "\nKey: ");
     OrderTextArea.setText(traversalResult);
-    }//GEN-LAST:event_ExecuteButtonActionPerformed
+    }//GEN-LAST:event_OrderComboBoxActionPerformed
 
     private void FindButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindButtonActionPerformed
-       T searchData = FindText.getText();
-    BSTNode<T> result = searchRecursiveNode(theBeSTSearchTree.getRoot(), searchData);
+      String searchDataStr = FindText.getText();
+  BSTWordData searchData = new BSTWordData(searchDataStr,currentFile);
+    BSTNode<BSTWordData> result = theBeSTSearchTree.searchRecursiveNode(theBeSTSearchTree.getRoot(), searchData);
     if (result != null) {
-        ResultArea.setText("Found: " + result.getData());
+        ResultArea.setText((""+result.getData()).replaceAll("Found in: ","\nFound in: "));
     } else {
         ResultArea.setText("Not found.");
     }
@@ -170,12 +173,13 @@ public class Results extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ExecuteButton;
     private javax.swing.JButton FindButton;
     private javax.swing.JTextField FindText;
     private javax.swing.JComboBox<String> OrderComboBox;
     private javax.swing.JTextArea OrderTextArea;
     private javax.swing.JTextArea ResultArea;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

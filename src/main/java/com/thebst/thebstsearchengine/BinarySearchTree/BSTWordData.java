@@ -55,7 +55,7 @@ public class BSTWordData implements IComparable{
 
     @Override
     public String toString() {
-        String output = "Key: " + data + ", Found: [";
+        String output = "Key: " + data + ", Found in: [";
         for (int i = 0; i < wordCounts.getSize(); i++) {
             output += wordCounts.get(i).toString() + ", ";
         }
