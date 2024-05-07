@@ -45,6 +45,18 @@ public class BinarySearchTree<T extends IComparable> {
     public boolean search(T data) {
         return searchRecursive(root, data);
     }
+    private BSTNode<T> searchRecursiveNode(BSTNode<T> node, T data) {
+    if (node == null || node.getData().isEquals(data) == 0) {
+        return node;
+    }
+
+    if (data.isEquals(node.getData()) < 0) {
+        return searchRecursiveNode(node.getLeft(), data);
+    } else {
+        return searchRecursiveNode(node.getRight(), data);
+    }
+}
+    
 
     private boolean searchRecursive(BSTNode<T> node, T data) {
         if (node == null) {
