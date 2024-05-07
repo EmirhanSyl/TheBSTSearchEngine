@@ -25,6 +25,7 @@ public class Results extends javax.swing.JPanel {
     private final File[] files;
     private final FileFilter fileFilter = new FileFilter();
     private final BinarySearchTree<BSTWordData> theBeSTSearchTree = new BinarySearchTree<>();
+    String traversalResult = "";
 
    
     public Results(MainFrame context, File[] filePaths) {
@@ -32,6 +33,9 @@ public class Results extends javax.swing.JPanel {
         this.context = context;
         this.files = filePaths;
         FileContentsToBST();
+        traversalResult = theBeSTSearchTree.inOrder(theBeSTSearchTree.getRoot());
+        traversalResult = traversalResult.replaceAll("Key: ", "\nKey: ");
+    OrderTextArea.setText(traversalResult);
     }
 
     private void FileContentsToBST(){
@@ -138,7 +142,7 @@ public class Results extends javax.swing.JPanel {
 
     private void OrderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderComboBoxActionPerformed
         String selectedOption = (String) OrderComboBox.getSelectedItem();
-    String traversalResult = "";
+    
     
     if (selectedOption.equals("InOrder")) {
         traversalResult = theBeSTSearchTree.inOrder(theBeSTSearchTree.getRoot());

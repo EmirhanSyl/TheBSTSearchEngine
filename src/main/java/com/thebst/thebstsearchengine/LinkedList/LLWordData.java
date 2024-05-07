@@ -32,7 +32,7 @@ public class LLWordData {
 
     @Override
     public String toString() {
-        return "\"" + fileName + "\" -> " + count;
+        return "\"" + fileName + "\" , " + count;
     }
     
     
